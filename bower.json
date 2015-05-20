@@ -1,0 +1,21 @@
+{
+  "name": "react-inertia",
+  "version": "0.0.1",
+  "description": "An inertia touch scroll React component",
+  "homepage": "https://github.com/garryyao/react-inertia",
+  "authors": [
+    "Garry Yao <yaojun85@gmail.com>"
+  ],
+  "keywords": [
+    "react",
+    "react-component",
+    "inertia",
+    "momentum",
+    "scroll",
+    "touch"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "scroller": "~1.2.2"
+  }
+}
