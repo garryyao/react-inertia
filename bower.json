@@ -1,0 +1,22 @@
+{
+  "name": "react-scroll",
+  "version": "0.1.2",
+  "homepage": "https://github.com/garryyao/react-scroll",
+  "authors": [
+    "Garry Yao <yaojun85@gmail.com>"
+  ],
+  "description": "touch/mouse scroll component for React",
+  "keywords": [
+    "react",
+    "react-component",
+    "component",
+    "scroll",
+    "touch",
+    "mouse"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "scroller": "~1.2.2"
+  }
+}
