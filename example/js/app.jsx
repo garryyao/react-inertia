@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Scrollable from '../../dist/scrollable.js';
+import ScrollMouse from '../../dist/scrollMouse.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,9 +18,9 @@ class App extends React.Component {
 
     return (
       <div>
-        <Scrollable className="area" contentClassName="content">
+        <ScrollMouse className="area" contentClassName="content">
           {itemElements}
-        </Scrollable>
+        </ScrollMouse>
       </div>
     );
   }

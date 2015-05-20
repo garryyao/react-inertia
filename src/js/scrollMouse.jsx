@@ -1,5 +1,4 @@
 import React from 'react';
-import Scrollbar from './scrollBar.js';
 
 class Scrollable extends React.Component {
   constructor(props) {
@@ -40,32 +39,10 @@ class Scrollable extends React.Component {
   }
 
   render() {
-    var top = this.state.topPosition;
-    var left = this.state.leftPosition;
-    var style = this.props.useCssTransform ? {
-      transform: `translateZ(0px) translateX(${left}px) translateY(${top}px)`
-    } : {
-      marginTop: top,
-      marginLeft: left
+    var style = {
+      marginTop: this.state.topPosition,
+      marginLeft: this.state.leftPosition
     };
-
-    var scrollbarY = this.canScrollY() ? (
-      <Scrollbar
-        realSize={this.state.realHeight}
-        containerSize={this.state.containerHeight}
-        position={-this.state.topPosition}
-        onMove={this.handleMove.bind(this)}
-        type="vertical"/>
-    ) : null;
-
-    var scrollbarX = this.canScrollX() ? (
-      <Scrollbar
-        realSize={this.state.realWidth}
-        containerSize={this.state.containerWidth}
-        position={-this.state.leftPosition}
-        onMove={this.handleMove.bind(this)}
-        type="horizontal"/>
-    ) : null;
 
     var classes = 'scrollarea ' + this.props.className;
     var contentClasses = 'scrollarea-content ' + this.props.contentClassName
@@ -74,8 +51,6 @@ class Scrollable extends React.Component {
         <div ref="content" style={style} className={contentClasses}>
           {this.props.children}
         </div>
-        {scrollbarY}
-        {scrollbarX}
       </div>
     );
   }
@@ -177,16 +152,6 @@ class Scrollable extends React.Component {
     }
   }
 
-  scrollTop() {
-    this.setState({topPosition: 0});
-  }
-
-  scrollBottom() {
-    this.setState({
-      topPosition: -(this.state.realHeight - this.state.containerHeight)
-    });
-  }
-
   canScrollY(state = this.state) {
     return state.scrollableY && this.props.vertical;
   }
@@ -207,8 +172,7 @@ Scrollable.propTypes = {
 Scrollable.defaultProps = {
   speed: 1,
   vertical: true,
-  horizontal: true,
-  useCssTransform: true
+  horizontal: true
 };
 
 export default Scrollable;
