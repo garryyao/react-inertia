@@ -5,32 +5,41 @@ var less = require('gulp-less');
 var webpackConf = require('./webpack.config.js');
 var babel = require('gulp-babel');
 var connect = require('gulp-connect');
+var uglify = require('gulp-uglify');
 
-gulp.task("webpack", function () {
-  return gulp.src('./example/js/main.js').pipe(webpack(webpackConf)).pipe(concat('main.js')).pipe(gulp.dest('example')).pipe(connect.reload());
+gulp.task('babel', function () {
+  return gulp.src('src/js/*.*').pipe(babel()).pipe(gulp.dest('.'));
 });
 
 gulp.task('build-less', function () {
-  return gulp.src('./src/less/**/*.less').pipe(less()).pipe(gulp.dest('./dist/css')).pipe(connect.reload());
+  return gulp.src('./src/less/**/*.less').pipe(less()).pipe(gulp.dest('./css')).pipe(connect.reload());
 });
 
 gulp.task('build-less-example', function () {
   return gulp.src('./example/less/**/*.less').pipe(less()).pipe(gulp.dest('./example')).pipe(connect.reload());
 });
 
-gulp.task("connect", function () {
-  connect.server({
-    root: 'dist', livereload: true, port: 8003
-  });
+gulp.task("webpack", function () {
+  return webpack(webpackConf).pipe(gulp.dest('dist')).pipe(connect.reload());
 });
 
-gulp.task('babel', function () {
-  return gulp.src('src/js/*.*').pipe(babel()).pipe(gulp.dest('dist'));
+gulp.task('confuse', function () {
+  return gulp.src('dist/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task("connect", function () {
+  connect.server({
+    root: '.',
+    livereload: true,
+    port: 8003
+  });
 });
 
 gulp.task('build', ['build-less', 'copy']);
 
-gulp.task('deploy', function () {
+gulp.task('deploy', ['confuse'], function () {
   var gh_pages = require('gulp-gh-pages');
   return gulp.src(['dist/**', 'example/**'], {base: '.'})
     .pipe(gh_pages());
