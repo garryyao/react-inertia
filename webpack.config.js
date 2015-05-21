@@ -1,11 +1,12 @@
 module.exports = {
   resolve: {
     modulesDirectories: ['node_modules', 'bower_components'],
-  }, module: {
+  },
+  module: {
     loaders: [
       {
         test: /\.js|\.jsx$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|bower_components/,
         loader: 'babel-loader'
       }, {
         test: /\.less$/,

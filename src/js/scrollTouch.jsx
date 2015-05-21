@@ -2,7 +2,7 @@ import React from 'react';
 import Scrollbar from './scrollBar.js';
 import ScrollStyle from './scrollStyles.js';
 
-require('imports?global=>window!./animate');
+require('imports?this=>window!scroller/src/Animate.js');
 var Scroller = require('imports?core=>window.core!exports?Scroller!scroller/src/Scroller.js')
 
 class Scrollable extends React.Component {
