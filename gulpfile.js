@@ -30,7 +30,7 @@ gulp.task('babel', function () {
 
 gulp.task('build', ['build-less', 'copy']);
 
-gulp.task('release', ['default'], function () {
+gulp.task('deploy', function () {
   var gh_pages = require('gulp-gh-pages');
   return gulp.src(['dist/**', 'example/**'], {base: '.'})
     .pipe(gh_pages());
