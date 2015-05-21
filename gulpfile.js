@@ -30,7 +30,15 @@ gulp.task('babel', function () {
 
 gulp.task('build', ['build-less', 'copy']);
 
+gulp.task('release', ['default'], function () {
+  var gh_pages = require('gulp-gh-pages');
+  return gulp.src(['dist/**', 'example/**'], {base: '.'})
+    .pipe(gh_pages());
+});
+
 gulp.task('default', ['build-less', 'babel', 'build-less-example', 'webpack']);
+
+gulp.task('js', ['babel', 'webpack']);
 
 gulp.task('watch', function () {
   connect.server({

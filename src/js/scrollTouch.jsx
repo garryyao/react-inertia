@@ -2,6 +2,9 @@ import React from 'react';
 import Scrollbar from './scrollBar.js';
 import ScrollStyle from './scrollStyles.js';
 
+require('imports?global=>window!./animate');
+var Scroller = require('imports?core=>window.core!exports?Scroller!scroller/src/Scroller.js')
+
 class Scrollable extends React.Component {
   constructor(props) {
     super(props);
